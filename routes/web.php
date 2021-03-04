@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 //Route::get('login', [UserController::class, 'login']);
 //Route::middleware('check.auth')->get('test', [UserController::class, 'test']);
 Route::get('/', function () {
-    redirect('login');
+    redirect()->route('/login');
 });
 Route::get('login', [\App\Http\Controllers\Auth\AuthController::class, 'loginView']);
 Route::get('install', [\App\Http\Controllers\Install\InstallController::class, 'installView']);
