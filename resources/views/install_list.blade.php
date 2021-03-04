@@ -10,6 +10,7 @@
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://www.unpkg.com/vconsole@3.4.0/dist/vconsole.min.js"></script>
     <title>列表</title>
 </head>
 <body>
@@ -68,6 +69,7 @@
 </div>
 
 <script>
+    var vConsole = new VConsole();
     axios.interceptors.request.use(
         config => {
             const token = localStorage.getItem('token')
@@ -132,13 +134,14 @@
                 window.location = '/install?id=' + row.id
             },
             getData() {
+                const install_date = this.searchForm.install_date ? [this.searchForm.install_date, this.searchForm.install_date] : ''
                 axios.get('/api/install', {
                     params: {
                         page: this.currentPage,
                         num: this.size,
                         address: this.searchForm.address,
                         account: this.searchForm.account,
-                        install_date: [this.searchForm.install_date, this.searchForm.install_date]
+                        install_date: install_date
                     }
                 })
                     .then((response) => {
