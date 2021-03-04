@@ -87,7 +87,7 @@
             if (response.data.code == 429) {
                 window.location = '/login'
             }
-            const token = response.headers.token ?? ''
+            const token = response.headers.token ? response.headers.token : ''
             token && localStorage.setItem('token', token)
             return response
         }
